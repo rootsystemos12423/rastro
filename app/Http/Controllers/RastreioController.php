@@ -32,12 +32,12 @@ class RastreioController extends Controller
         $cpf = Carrier::where('taxacao_payment_link', $data['resource']['customer']['doc'])->first();
 
         if ($cpf) {
-            return response()->json(['error' => 'Pedido Ja Cadastrado'], 400);
+            return response()->json(['error' => 'Pedido Ja Cadastrado'], 200);
         }
         
         // Validar se os dados do webhook estão corretos
         if (empty($data['resource']['address']) || empty($data['resource']['address']['city'])) {
-            return response()->json(['error' => 'Dados do endereço inválidos.'], 400);
+            return response()->json(['error' => 'Dados do endereço inválidos.'], 200);
         }
 
         $randomCode = $this->generateRandomCode();
