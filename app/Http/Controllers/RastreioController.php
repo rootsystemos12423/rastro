@@ -23,6 +23,12 @@ class RastreioController extends Controller
         // Receber os dados do webhook
         $data = $request->json()->all();
 
+        if (empty($data['resource']['address']) || empty($data['resource']['address']['city'])) {
+            return response()->json([
+                'error' => 'Dados do endereço inválidos.'
+            ], 200); // Status 200, com mensagem de erro
+        }
+
         $cpf = Carrier::where('taxacao_payment_link', $data['resource']['customer']['doc'])->first();
 
         if ($cpf) {
@@ -87,6 +93,8 @@ class RastreioController extends Controller
             'delivery_date' => $order->delivery_date,
             'route' => $routeDetails,
         ]);
+
+
     }
 
     /**
