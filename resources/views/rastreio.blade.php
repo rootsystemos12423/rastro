@@ -293,7 +293,6 @@
                                                       </ul>
                                                       <div data-v-5784ed69-s="">
                                                          <div data-v-5784ed69-s="" class="border-neutral-light inline-flex h-12 w-auto items-center rounded border-[1px] bg-white pl-5 share-copy" alt="false" minimal="false">
-                                                            <span class="text-neutral-dark max-w-full truncate">https://app.melhorrastreio.com.br/app/jadlog/380371402</span>
                                                             <button type="button" class="me-button me-button--minimal me-button--icon-only me-button--primary">
                                                                <span class="me-button__content">
                                                                   <span class="me-button__icon" role="img">
@@ -648,8 +647,6 @@
             </div>
          </div>
       </div>
-      <script>window.__NUXT_SITE_CONFIG__={defaultLocale:"en",env:"production",indexable:true,name:"mr-web",trailingSlash:false,url:"https:\u002F\u002Fapp.melhorrastreio.com.br"}</script><script type="application/json" id="__NUXT_DATA__" data-ssr="false">[{"_errors":1,"serverRendered":2,"data":3,"state":4},{},false,{},{}]</script>
-      <script>window.__NUXT__={};window.__NUXT__.config={public:{apiUrl:"https://api.melhorrastreio.com.br",appName:"Melhor Rastreio",appTitleTemplate:"%s | Melhor Rastreio",appUrl:"https://app.melhorrastreio.com.br/app",lpUrl:"https://melhorrastreio.com.br",graphqlUrl:"https://api.melhorrastreio.com.br/graphql",ffAuthLogin:"true",ffAuthRequestPassword:"true",ffAuthRegister:"true",ffUserGeneralConfig:"true",ffUserIntegrationConfig:"true",ffUserEmailConfig:"false",ffUserPasswordConfig:"true",ffUserPrivacyConfig:"true",ffFollowList:"true",ffFollowEdit:"true",ffFollowRemove:"true",ffFollowFilter:"true",ffParcelTimeline:"true",ffParcelFollow:"true",ffParcelEvent:"true",ffParcelShare:"true",removeAccountReasonMaxChar:"200",ffSupport:"true",ffMaintenanceMode:"false",meOAuthClientId:"9331",meOAuthScope:"users-read orders-read",meOAuthAuthorizationURI:"https://melhorenvio.com.br/oauth/authorize",auth:{redirect:{login:"/login",home:"/"}},cookieFirst:{enabled:true,key:"16a3ee2a-39d8-494c-bb0a-6842897ce880",domain:"https://app.melhorrastreio.com.br"},gtm:{id:"GTM-MGKK7F5",enabled:true,debug:false,ignoredViews:[],trackOnNextTick:false},hotjar:{id:"2352497",sv:"6",enabled:true},microsoftClarity:{enabled:true,key:"d9qybxqw64"},optimize:{id:"OPT-P2B3247",enabled:true},recaptcha:{siteKey:"6LebJsMkAAAAAK-rd32Hj0VCNnbQcJLm3H7IsB5U",enabled:true},googleAdsense:{id:"ca-pub-2781922082089615",enabled:true,test:false,onPageLoad:true,pageLevelAds:true,overlayBottom:true},userPilot:{token:"NX-716c51fa"}},app:{baseURL:"/app/",buildAssetsDir:"/files/",cdnURL:"/"}}</script>
       <div id="me-overlay"></div>
       <div class="bg-neutral-murk/40 pointer-events-none fixed left-0 top-0 size-full transition-opacity z-100 opacity-0"></div>
       <div id="me-dialog">
