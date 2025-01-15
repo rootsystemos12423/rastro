@@ -33,7 +33,7 @@ class TrackingCodeMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Tracking Code Mail',
+            subject: 'Seu Rastreio Chegou :)',
         );
     }
 
