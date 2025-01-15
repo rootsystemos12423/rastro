@@ -178,7 +178,7 @@
             <p>Para acompanhar o progresso do seu pedido em tempo real, clique no botão abaixo:</p>
 
             <!-- Call-to-Action Button -->
-            <a href="{{ env('APP_URL') }}/rastreio/{{ $trackingCode }}" class="cta-button">Acompanhar Rastreamento</a>
+            <a style="color: white;" href="{{ env('APP_URL') }}/rastreio/{{ $trackingCode }}" class="cta-button">Acompanhar Rastreamento</a>
 
             <p>Caso tenha dúvidas ou precise de suporte, nossa equipe está pronta para ajudar. Entre em contato pelo link abaixo.</p>
         </div>
