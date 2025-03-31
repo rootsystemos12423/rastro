@@ -16,6 +16,10 @@ class Carrier extends Model
         'tracking_code',
         'taxacao',
         'taxacao_payment_link',
+        'external_id',
+        'email',
+        'email_sent_at',
+        'customer',
     ];
 
     /**

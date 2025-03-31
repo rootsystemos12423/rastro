@@ -23,35 +23,47 @@ class RastreioController extends Controller
         // Receber os dados do webhook
         $data = $request->json()->all();
 
-        if (empty($data['resource']['address']) || empty($data['resource']['address']['city'])) {
+        if ($data['data']['status'] !== 'paid') {
+            return response()->json([
+                'error' => 'Not Expected Status'
+            ], 200); // Status 200, com mensagem de erro
+        }
+
+        if (empty($data['data']['customer']['address']) || empty($data['data']['customer']['address']['city'])) {
             return response()->json([
                 'error' => 'Dados do endereço inválidos.'
             ], 200); // Status 200, com mensagem de erro
         }
 
-        $cpf = Carrier::where('taxacao_payment_link', $data['resource']['customer']['doc'])->first();
+        $external_id = Carrier::where('external_id', $data['id'])->first();
 
-        if ($cpf) {
+        if ($external_id) {
             return response()->json(['error' => 'Pedido Ja Cadastrado'], 200);
         }
         
         // Validar se os dados do webhook estão corretos
-        if (empty($data['resource']['address']) || empty($data['resource']['address']['city'])) {
+        if (empty($data['data']['customer']['address']) || empty($data['data']['customer']['address']['city'])) {
             return response()->json(['error' => 'Dados do endereço inválidos.'], 200);
         }
 
         $randomCode = $this->generateRandomCode();
 
+        $email = $data['data']['customer']['email'];
+        $customer = $data['data']['customer']['name'];
+
         // Criar o pedido (order)
         $carrier = Carrier::create([
             'name' => 'Jadlog',
             'tracking_code' => $randomCode,
-            'taxacao_payment_link' => $data['resource']['customer']['doc'],
+            'taxacao_payment_link' => $data['data']['customer']['document']['number'],
+            'external_id' => $data['id'],
+            'email' => $email,
+            'customer' => $customer,
         ]);
 
         // Criar o pedido (order)
         $order = Order::create([
-            'address' => json_encode($data['resource']['address']),
+            'address' => json_encode($data['data']['customer']['address']),
             'delivery_date' => now()->addDays(35), // Prazo de entrega definido para 35 dias a partir de hoje
         ]);
 
@@ -70,22 +82,17 @@ class RastreioController extends Controller
         }
         
 
-        $stateAbbreviation = substr($data['resource']['address']['uf'], 0, 2);
+        $stateAbbreviation = substr($data['data']['customer']['address']['state'], 0, 2);
 
         // Simular o cálculo do trajeto
         $routeDetails = $this->GenerateRoute(
             $order->id, 
-            $data['resource']['address']['uf'], // Apenas o estado de início
+            $data['data']['customer']['address']['state'], // Apenas o estado de início
             $randomStateArray[array_rand($randomStateArray)],
             $carrier // Um estado aleatório como destino
         );
         
-
-        $email = $data['resource']['customer']['email'];
-
-        $nome = $data['resource']['customer']['first_name'];
-
-        Mail::to($email)->send(new TrackingCodeMail($carrier->tracking_code, $nome));
+        $nome = $data['data']['customer']['name'];
 
         // Retornar o sucesso com detalhes do trajeto
         return response()->json([
@@ -181,7 +188,7 @@ class RastreioController extends Controller
     
 function generateRandomCode() {
     // Gera 3 letras aleatórias para as duas primeiras partes
-    $part1 = strtoupper(substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 4));
+    $part1 = 'PR';
     $part2 = strtoupper(substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 5));
     // Gera 2 letras aleatórias para a terceira parte
     $part3 = strtoupper(substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, 3));

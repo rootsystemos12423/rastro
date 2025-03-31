@@ -18,6 +18,7 @@ class OrderTrackingHistory extends Model
         'location',
         'type',
         'created_at',
+        'email_sent_at',
     ];
 
     /**

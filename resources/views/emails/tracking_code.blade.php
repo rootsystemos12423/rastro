@@ -3,152 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seu Rastreamento Está Disponível</title>
+    <title>Atualização do Seu Pedido</title>
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #fafbfc;
+            background-color: #f5f7fa;
             color: #333333;
+            line-height: 1.6;
         }
         .email-container {
-            max-width: 700px;
+            max-width: 600px;
             margin: 30px auto;
             background-color: #ffffff;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
         }
         .email-header {
-            background-color: #f9f9f9;
+            background: #ffffff;
             padding: 30px;
             text-align: center;
-            color: #2bc866;
+            color: white;
         }
         .email-header img {
             max-width: 120px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         .email-header h1 {
             margin: 0;
-            font-size: 28px;
-            line-height: 1.4;
+            font-size: 26px;
+            font-weight: 600;
+            color: #0056d2;
         }
         .email-body {
-            padding: 30px 20px;
+            padding: 30px;
         }
-        .email-body h2 {
-            font-size: 22px;
-            color: #0056d2;
-        }
-        .email-body p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #666666;
-            margin: 15px 0;
-        }
-        .tracking-info {
-            background-color: #f9fafb;
-            border: 1px solid #e0e4e8;
+        .tracking-card {
+            background-color: #f8fafc;
+            border-radius: 10px;
             padding: 20px;
-            border-radius: 6px;
-            margin: 20px 0;
+            margin: 25px 0;
+            border-left: 4px solid #0056d2;
         }
-        .tracking-info p {
-            margin: 10px 0;
-            font-size: 16px;
-            font-weight: bold;
-            color: #333333;
-        }
-        .tracking-info strong {
-            color: #0056d2;
-        }
-        .tracking-info-code {
-            background-color: #f9fafb;
-            border: 1px solid #e0e4e8;
-            padding: 20px;
-            border-radius: 6px;
-            margin: 20px 0;
+        .tracking-code {
+            background-color: #f0f7ff;
+            border-radius: 8px;
+            padding: 15px;
             text-align: center;
-        }
-        .tracking-info-code p {
-            margin: 10px 0;
-            font-size: 24px;
+            margin: 20px 0;
+            font-size: 18px;
             font-weight: bold;
-            color: #333333;
-        }
-        .tracking-info-code strong {
             color: #0056d2;
-            font-size: 28px;
+            border: 1px dashed #0056d2;
         }
         .cta-button {
             display: block;
             text-align: center;
             margin: 30px auto;
-            background-color: #0056d2;
-            color: #ffffff;
+            background: #0056d2;
+            color: white;
             text-decoration: none;
-            font-size: 18px;
-            padding: 14px 40px;
+            font-size: 16px;
+            padding: 14px 30px;
             border-radius: 30px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            max-width: 300px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            max-width: 250px;
+            box-shadow: 0 4px 6px rgba(0, 86, 210, 0.1);
         }
         .cta-button:hover {
-            background-color: #0043a7;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 86, 210, 0.15);
+        }
+        .journey-container {
+            margin: 30px 0;
+            position: relative;
+        }
+        .journey-step {
+            display: flex;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e6f0ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            color: #0056d2;
+            font-weight: bold;
+            border: 2px solid #0056d2;
+        }
+        .step-content {
+            flex-grow: 1;
+            padding-bottom: 20px;
+            border-left: 2px solid #e0e4e8;
+            padding-left: 20px;
+            position: relative;
+        }
+        .step-content:before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #e0e4e8;
+        }
+        .step-title {
+            font-weight: 600;
+            color: #0056d2;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        .step-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .step-location {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+        .step-date {
+            font-size: 12px;
+            color: #888;
+        }
+        .current-step .step-icon {
+            background-color: #0056d2;
+            color: white;
+        }
+        .completed-step .step-icon {
+            background-color: #2bc866;
+            color: white;
+            border-color: #2bc866;
+        }
+        .completed-step .step-content:before {
+            background-color: #2bc866;
+        }
+        .current-step .step-content:before {
+            background-color: #0056d2;
+            width: 12px;
+            height: 12px;
+            left: -7px;
+            top: -1px;
         }
         .email-footer {
-            background-color: #f9fafb;
+            background-color: #f8f9fa;
             text-align: center;
             padding: 20px;
-            font-size: 14px;
+            font-size: 13px;
             color: #777777;
+            border-top: 1px solid #e0e4e8;
         }
         .email-footer a {
             color: #0056d2;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 500;
         }
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 600px) {
             .email-container {
-                max-width: 90%;
-                margin: 20px auto;
+                margin: 15px;
+                border-radius: 8px;
             }
-            .email-body {
+            .email-header, .email-body {
                 padding: 20px;
             }
-            .cta-button {
-                width: 100%;
-                padding: 12px 20px;
-            }
-            .email-header h1 {
-                font-size: 24px;
-            }
-            .email-body h2 {
-                font-size: 20px;
-            }
-        }
-        @media screen and (max-width: 480px) {
-            .email-header img {
-                max-width: 90px;
-            }
-            .email-header h1 {
-                font-size: 20px;
-            }
-            .email-body p, .tracking-info p {
+            .step-icon {
+                width: 36px;
+                height: 36px;
                 font-size: 14px;
             }
             .cta-button {
-                font-size: 16px;
-                padding: 10px 5px;
+                width: 100%;
+                padding: 12px;
             }
-            .tracking-info-code strong {
-                  font-size: 16px;
-            }
-
         }
+
+        .step-icon img {
+        width: 24px;
+        height: 24px;
+        filter: brightness(0) invert(1); /* Torna o ícone branco */
+        object-fit: contain;
+    }
+
+    .current-step .step-icon {
+        background-color: #0056d2;
+        border-color: #0056d2;
+    }
+
+    .completed-step .step-icon {
+        background-color: #2bc866;
+        border-color: #2bc866;
+        color: white;
+    }
     </style>
 </head>
 <body>
@@ -156,37 +213,62 @@
         <!-- Header -->
         <div class="email-header">
             <img src="https://melhorrastreio.com.br/mr-logo.svg" alt="Logo Melhor Rastreio">
-            <h1>Rastreamento Disponível</h1>
+            <h1>Atualização do Seu Pedido</h1>
         </div>
 
         <!-- Body -->
         <div class="email-body">
-            <h2>Olá, {{ $nome }}!</h2>
-            <p>Temos ótimas notícias! Seu pedido foi enviado e está a caminho. Confira os detalhes abaixo:</p>
+            <h2>Olá, {{ $name }}!</h2>
+            <p>Seu pedido teve uma atualização:</p>
 
-            <span>Seu código de rastreio é:</span>
-            <div class="tracking-info-code">
-                  <strong>{{ $trackingCode }}</strong>
-              </div>
-
-            <!-- Tracking Information -->
-            <div class="tracking-info">
-                <p>Transportadora: <strong>Fast Logistica S/A</strong></p>
-                <p>Status Atual: <strong>Aguardando Coleta</strong></p>
+            <div class="tracking-card">
+                <div class="tracking-code">{{ $trackingCode }}</div>
+                <p><strong>Status atual:</strong> {{ $currentStatus }}</p>
+                <p><strong>Localização:</strong> {{ $currentLocation }}</p>
+                <p><strong>Última atualização:</strong> {{ $updateTime }}</p>
+                <p>{{ $statusDescription }}</p>
             </div>
 
-            <p>Para acompanhar o progresso do seu pedido em tempo real, clique no botão abaixo:</p>
+            <h3>Jornada Completa do Pedido</h3>
+            
+            <div class="journey-container">
+                @foreach($journey as $index => $step)
+                <div class="journey-step {{ $index === $currentStatusIndex ? 'current-step' : 'completed-step' }}">
+                    <div class="step-icon">
+                        @if($index === $currentStatusIndex)
+                            <img src="{{ asset('images/cargo-truck.svg') }}" alt="Status atual" style="width: 24px; height: 24px;">
+                        @else
+                            ✓
+                        @endif
+                    </div>
+                    
+                    <div class="step-content">
+                        <div class="step-title">{{ $step['title'] ?? $step['status'] }}</div>
+                        <div class="step-description">{{ $step['description'] }}</div>
+                        @if(!empty($step['location']))
+                            <div class="step-location">Local: {{ $step['location'] }}</div>
+                        @endif
+                        <div class="step-date">{{ $step['date'] }}</div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
 
-            <!-- Call-to-Action Button -->
-            <a style="color: white;" href="{{ env('APP_URL') }}/rastreio/{{ $trackingCode }}" class="cta-button">Acompanhar Rastreamento</a>
+            <!-- Botão CTA Adicionado Aqui -->
+            <a href="{{ env('APP_URL') }}/rastreio/{{ $trackingCode }}" class="cta-button">Acompanhar Pedido</a>
 
-            <p>Caso tenha dúvidas ou precise de suporte, nossa equipe está pronta para ajudar. Entre em contato pelo link abaixo.</p>
+            <p style="text-align: center; margin-top: 20px; font-size: 14px; color: #777;">
+                Precisa de ajuda? <a href="#" style="color: #0056d2;">Fale conosco</a>
+            </p>
         </div>
 
         <!-- Footer -->
         <div class="email-footer">
             <p>&copy; {{ date('Y') }} Melhor Rastreio. Todos os direitos reservados.</p>
-            <p><a href="#">Clique aqui para suporte</a></p>
+            <p>
+                <a href="#">Política de Privacidade</a> | 
+                <a href="#">Termos de Uso</a>
+            </p>
         </div>
     </div>
 </body>
